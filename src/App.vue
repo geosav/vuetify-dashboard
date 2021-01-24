@@ -3,12 +3,17 @@
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>Vuetify Dashboard</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn>Home</v-btn>
-      <v-btn>Login</v-btn>
+      <v-btn
+        v-for="link in links"
+        :key="`${link.label}-header-link`"
+        text
+        rounded
+        :to="link.url"
+      >{{ link.label }}</v-btn>
     </v-app-bar>
 
     <v-content>
-      <Login/>
+      <router-view></router-view>
     </v-content>
 
     <v-footer color="primary lighten-1" padless>
@@ -20,8 +25,9 @@
             text
             rounded
             class="my-2"
+            :to="link.url"
         >
-          {{ link }}
+          {{ link.label }}
         </v-btn>
         <v-flex primary lighten-2 py-4 text-center white--text xs12>
           {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
@@ -32,19 +38,19 @@
 </template>
 
 <script>
-import Login from './components/Login';
-
 export default {
   name: 'App',
-
-  components: {
-    Login,
-  },
-
+  components: {},
   data: () => ({
     links: [
-        'Home',
-        'Login'
+      {
+        label: 'Home',
+        url: '/'
+      },
+      {
+        label: 'Login',
+        url: '/login'
+      }
     ]
   }),
 };
