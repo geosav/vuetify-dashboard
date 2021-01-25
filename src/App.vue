@@ -5,22 +5,22 @@
       <v-spacer></v-spacer>
       <v-btn
         v-for="link in links"
-        :key="`${link.label}-header-link`"
+        :key="`${link.id}`"
         text
         rounded
         :to="link.url"
       >{{ link.label }}</v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <router-view></router-view>
-    </v-content>
+    </v-main>
 
     <v-footer color="primary lighten-1" padless>
       <v-layout justify-center wrap>
         <v-btn
             v-for="link in links"
-            :key="link"
+            :key="link.id"
             color="white"
             text
             rounded
@@ -45,15 +45,18 @@ export default {
     links: [
       {
         label: 'Home',
-        url: '/'
+        url: '/',
+        id: 1
       },
       {
         label: 'Login',
-        url: '/login'
+        url: '/login',
+        id: 2
       },
       {
         label: 'Dashboard',
-        url: '/dashboard'
+        url: '/dashboard',
+        id: 3
       }
     ]
   }),
